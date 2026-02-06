@@ -14,14 +14,14 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
+    display: inline-block; /* Shrink to fit content */
     text-align: center;
     background-color: white;
-    padding: 30px;
+    padding: 40px; /* More padding for breathing room */
     border-radius: 12px;
-    border: 8px solid #c41e3a;
+    border: 8px solid #C41E3A;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center horizontally */
 }
 
 h1 {
@@ -61,4 +61,25 @@ h1 {
     background-color: #ffb300;
     transform: translateY(2px);
     box-shadow: 0 2px 0 #c41e3a;
+}
+
+/* Sketch container - holds the grid - FIXED */
+#sketch-container {
+    width: 800px; /* Slightly smaller for better fit */
+    height: 800px; /* Keep it square */
+    border: 2px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* Remove margin: auto and let .container handle centering */
+}
+
+.grid-square {
+    border: 1px solid #f0f0f0;
+    transition: background-color 0.05s ease;
+}
+
+.grid-square.hovered {
+    background-color: #333;
 }
