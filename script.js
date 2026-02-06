@@ -1,7 +1,7 @@
 const sketchContainer = document.getElementById('sketch-container');
 const gridSizeBtn = document.getElementById('grid-size-btn');
 
-const CONTAINER_SIZE = 960;
+const CONTAINER_SIZE = 802;
 let currentGridSize = 16;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,3 +32,17 @@ function createGrid(size) {
 
     console.log(`Grid created with ${size * size} squares`);
 }
+
+// Grid size button functionality
+gridSizeBtn.addEventListener('click', () => {
+    const userInput = prompt('Enter number of squares per side (max 100):', currentGridSize);
+    const newSize = parseInt(userInput);
+    
+    if (isNaN(newSize) || newSize < 1 || newSize > 100) {
+        alert('Please enter a valid number between 1 and 100.');
+        return;
+    }
+    
+    currentGridSize = newSize;
+    createGrid(newSize);
+});
