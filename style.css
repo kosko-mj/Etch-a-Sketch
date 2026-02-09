@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --frame-width: 900px;
+}
+
 /* Base Styles */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -21,32 +25,35 @@ body {
 .container {
     text-align: center;
     background-color: #c41e3a;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 32px 60px 48px 60px;
+    border-radius: 24px;
     border: 5px solid #a0172e;
     box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.2),
-        inset 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    width: fit-content;
+        0 12px 30px rgba(0, 0, 0, 0.2),
+        inset 0 0 24px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: var(--frame-width);
     margin: 0 auto;
 }
 
 /* Logo */
 .toy-logo {
     font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
-    font-size: 3.2rem;
+    font-size: 2.4rem;           /* smaller, more authentic */
     color: #FFF;
     text-shadow: 
-        3px 3px 0 #C41E3A,
+        2px 2px 0 #C41E3A,       /* slightly softer drop shadow */
         1px 1px 0 #000;
-    margin-bottom: 20px;
-    transform: rotate(-2deg);
+    margin: 12px 0 32px 0;       /* tight top, generous bottom spacing */
+    transform: rotate(-1.5deg);  /* subtler tilt */
     display: inline-block;
+    line-height: 1.1;            /* tighter letter spacing */
+    letter-spacing: 0.5px;
 }
 
+
 .trademark {
-    font-size: 1.2rem;
+    font-size: 1rem;
     vertical-align: super;
     margin-left: 2px;
 }
@@ -91,14 +98,14 @@ body {
     display: inline-block;
     margin: 0 auto 20px;
     box-shadow: 
-        inset 0 0 15px rgba(0, 0, 0, 0.7),
-        0 5px 15px rgba(0, 0, 0, 0.3);
+        inset 0 0 8px rgba(0, 0, 0, 0.5),
+        0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Silver Screen (drawing area) - NO RED BORDER */
 #sketch-container {
-    width: 600px;
-    height: 600px;
+    width: calc(var(--frame-width) * 0.743);
+    height: calc(var(--frame-width) * 0.743 / 1.44);
     display: flex;
     flex-wrap: wrap;
     background-color: #e0e0e0; /* Silver color */
@@ -117,4 +124,93 @@ body {
 
 .grid-square.hovered {
     background-color: #000; /* Black scratches on silver */
+}
+
+/* Kobs */
+/* Etch-a-Sketch Knobs - Realistic */
+.knobs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 18px;
+    width: calc(var(--frame-width) * 0.9);     /* wider than the screen (which is 0.743) */
+    margin: 18px auto 0;                       /* center the row */
+    padding: 0; 
+}
+
+.knob span {
+    position: relative;
+    z-index: 1;                                  /* label above cap */
+}
+
+.knob {
+    width: calc(var(--frame-width) * 0.14);
+    height: calc(var(--frame-width) * 0.14);
+    background: radial-gradient(circle at 30% 30%, #ffffff, #d8d8d8 60%, #c4c4c4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333; /* Dark text */
+    font-weight: bold;
+    font-size: 1rem;
+    border: 5px solid #999; /* Medium gray border */
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    box-shadow: 
+        0 5px 0 #777,                /* shorter drop shadow */
+        inset 0 3px 6px rgba(255, 255, 255, 0.8),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.15);
+    position: relative;
+    font-family: 'Courier New', monospace; /* Technical font */
+}
+
+/* individual nudges */
+#color-knob {
+    margin-left: -24px;   /* pull left knob outward */
+}
+
+#darken-knob {
+    margin-right: 6px;  /* pull right knob outward */
+}
+
+/* Knob press - subtle */
+.knob:active {
+    transform: translateY(3px);
+    box-shadow:
+        0 2px 0 #777,
+        inset 0 2px 4px rgba(255, 255, 255, 0.7),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* Remove the blue active state - just visual feedback on press */
+.knob.active {
+    /* No special styling - looks the same as inactive */
+}
+
+.knob.active:active {
+    /* Same press effect */
+    transform: translateY(3px);
+    box-shadow:
+        0 2px 0 #777,
+        inset 0 2px 4px rgba(255, 255, 255, 0.7),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.knob::before {
+    content: "";
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fdfdfd, #d0d0d0);
+    box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* ensures perfect centering */
+    pointer-events: none;             /* so clicks still hit the knob */
 }
