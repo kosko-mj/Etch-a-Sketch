@@ -119,7 +119,7 @@ body {
     flex: 0 0 auto;
     margin: 0;
     padding: 0;
-    transition: background-color 0.05s ease;
+    transition: background-color 0.05s ease, opacity 0.3s ease;
 }
 
 .grid-square.hovered {

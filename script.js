@@ -1,7 +1,11 @@
 const sketchContainer = document.getElementById('sketch-container');
 const gridSizeBtn = document.getElementById('grid-size-btn');
+const colorKnob = document.getElementById('color-knob');
+const darkenKnob = document.getElementById('darken-knob');
 
 let currentGridSize = 100;
+let randomColors = false;
+let progressiveDarkening = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     createGrid(currentGridSize);
@@ -30,9 +34,32 @@ function createGrid(size) {
         square.style.width = `${squareWidth}px`;
         square.style.height = `${squareHeight}px`;
 
-        square.addEventListener('mouseenter', () => {
-            square.classList.add('hovered');
-        });
+        // Track hover count for this square
+let hoverCount = 0;
+
+square.addEventListener('mouseenter', () => {
+    hoverCount++;
+    
+    // Apply random colors if enabled
+    if (randomColors) {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    } else {
+        square.style.backgroundColor = '#000'; // Default black
+    }
+    
+    // Apply progressive darkening if enabled
+    if (progressiveDarkening) {
+        const darkness = Math.min(hoverCount * 10, 100); // 10% per hover, max 100%
+        square.style.opacity = `${darkness}%`;
+    } else {
+        square.style.opacity = '100%';
+    }
+    
+    square.classList.add('hovered');
+});
 
         sketchContainer.appendChild(square);
     }
@@ -51,4 +78,18 @@ gridSizeBtn.addEventListener('click', () => {
     
     currentGridSize = newSize;
     createGrid(newSize);
+});
+
+// Color knob click handler
+colorKnob.addEventListener('click', () => {
+    randomColors = !randomColors;
+    colorKnob.classList.toggle('active', randomColors);
+    console.log('Random colors:', randomColors ? 'ON' : 'OFF');
+});
+
+// Darken knob click handler
+darkenKnob.addEventListener('click', () => {
+    progressiveDarkening = !progressiveDarkening;
+    darkenKnob.classList.toggle('active', progressiveDarkening);
+    console.log('Progressive darkening:', progressiveDarkening ? 'ON' : 'OFF');
 });
