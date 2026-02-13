@@ -1,3 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
 /* CSS Reset */
 * {
     margin: 0;
@@ -9,16 +16,404 @@
     --frame-width: 900px;
 }
 
-/* Base Styles */
+/* Base Styles - 80s School Desk */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f0f0f0;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* 80s School Desk Color - that weird yellowish-beige */
+    background-color: #F8d878; /* Base desk color */
+    position: relative;
+    overflow-x: hidden;
+    background-image: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/></filter><rect width="100%25" height="100%25" filter="url(%23grain)"/></svg>'),
+        linear-gradient(to bottom, rgba(247, 231, 166, 0.9), rgba(242, 222, 140, 0.9));
+}
+
+/* Desk texture - subtle noise/grain that actually works */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Simple noise texture - will actually show */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+/* Desk wear and lighting */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Center wear (lighter) */
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 240, 200, 0.3) 0%,
+            transparent 70%
+        ),
+        /* Edge darkening */
+        linear-gradient(
+            to bottom,
+            rgba(200, 160, 100, 0.1) 0%,
+            transparent 15%,
+            transparent 85%,
+            rgba(200, 160, 100, 0.1) 100%
+        ),
+        linear-gradient(
+            to right,
+            rgba(200, 160, 100, 0.1) 0%,
+            transparent 15%,
+            transparent 85%,
+            rgba(200, 160, 100, 0.1) 100%
+        );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Desk wear and tear - VISIBLE */
+.desk-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Visible pencil marks and doodles */
+.desk-details::before {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+    left: 80px;
+    width: 120px;
+    height: 60px;
+    background: 
+        /* Heart doodle */
+        radial-gradient(circle at 30% 50%, rgba(150, 60, 60, 0.3) 4px, transparent 5px),
+        /* "S" shape attempt */
+        linear-gradient(135deg, transparent 40%, rgba(80, 60, 40, 0.4) 41%, transparent 42%),
+        linear-gradient(225deg, transparent 40%, rgba(80, 60, 40, 0.4) 41%, transparent 42%),
+        /* Random scribbles */
+        linear-gradient(75deg, transparent 60%, rgba(90, 70, 40, 0.25) 61%, transparent 62%);
+    opacity: 0.6;
+    transform: rotate(-3deg);
+    filter: blur(0.5px);
+}
+
+
+.stussy-s {
+    position: absolute;
+    top: 400px;
+    right: 140px;
+    width: 200px;
+    height: 170px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/71/S-cool.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* DEEP CARVED WOOD EFFECT */
+    transform: rotate(8deg);
+    filter: 
+        brightness(0.4)      /* Darker base */
+        contrast(2.2)         /* Sharper edges */
+        sepia(0.45)           /* Wood tone */
+        drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); /* Subtle highlight */
+}
+
+.scribbles {
+  position: absolute;
+  top: 900px;
+  left: 1400px;
+  width: 120px;
+  height: 60px;
+  background-image:
+    /* main crossing lines */
+    linear-gradient(18deg, transparent 45%, rgba(0,0,0,0.45) 46%, rgba(0,0,0,0.45) 48%, transparent 49%),
+    linear-gradient(-22deg, transparent 40%, rgba(0,0,0,0.4) 41%, rgba(0,0,0,0.4) 43%, transparent 44%),
+    linear-gradient(65deg, transparent 50%, rgba(0,0,0,0.35) 51%, rgba(0,0,0,0.35) 53%, transparent 54%),
+    linear-gradient(-70deg, transparent 52%, rgba(0,0,0,0.3) 53%, rgba(0,0,0,0.3) 55%, transparent 56%);
+  opacity: 0.85;
+  filter: blur(0.3px);
+}
+
+
+
+/* NAME TAG */
+.name-tag {
+    position: absolute;
+    top: 500px;
+    left: 80px;
+    font-family: 'Reenie Beanie', 'Architects Daughter', 'Permanent Marker', cursive;    font-size: 25px;
+    color: rgba(0,0,0,0.7);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    transform: rotate(-10deg);
+    font-weight: bold;
+}
+.name-tag::before {
+    content: "louis eats turds";
+}
+
+.love-cluster {
+    position: absolute;
+    top: 80px;
+    right: 90px;
+    pointer-events: none;
+    transform: rotate(10deg);
+}
+
+.love-note {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    color: #2b5ba9;
+    white-space: nowrap;
+    z-index: 10;
+    font-family: 'Reenie Beanie', 'Architects Daughter', 'Permanent Marker', cursive;
+}
+.love-note::before {
+    content: "JAMES ♥ 4EVER";
+}
+
+.love-heart {
+    position: absolute;
+    color: #2b5ba9;
+    z-index: 5;
+}
+
+.love-heart::before {
+    content: "♥";
+}
+
+.love-heart-1 {
+    top: -30px;
+    right: 110px;
+    font-size: 32px;
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    font-family: 'Reenie Beanie';
+}
+
+.love-heart-2 {
+    top: -28px;
+    right: -5px;
+    font-size: 38px;
+    transform: rotate(5deg);
+    opacity: 1;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 700;
+}
+
+.love-heart-3 {
+    top: 20px;
+    right: 135px;
+    font-size: 24px;
+    transform: rotate(25deg);
+    opacity: 0.7;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.love-heart-4 {
+    top: 25px;
+    right: 15px;
+    font-size: 32px;
+    transform: rotate(-8deg);
+    opacity: 0.9;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 400;
+    filter: blur(0.3px);
+}
+
+.love-heart-5 {
+    top: 45px;
+    right: 70px;
+    font-size: 28px;
+    transform: rotate(12deg);
+    opacity: 0.85;
+}
+
+.scratch-marks {
+  position: absolute;
+  top: 360px;   /* move under the toy as needed */
+  left: 410px;
+  width: 180px;
+  height: 40px;
+  background-image:
+    linear-gradient(18deg, transparent 45%, rgba(80,40,0,0.65) 46%, rgba(80,40,0,0.65) 47%, transparent 48%),
+    linear-gradient(12deg, transparent 50%, rgba(80,40,0,0.55) 51%, rgba(80,40,0,0.55) 52%, transparent 53%),
+    linear-gradient(25deg, transparent 52%, rgba(80,40,0,0.6) 53%, rgba(80,40,0,0.6) 54%, transparent 55%);
+  opacity: 0.8;
+  filter: blur(0.4px);
+}
+
+
+/* Simple offset rings */
+.desk-details::after {
+    content: '';
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    /* Three offset rings */
+    box-shadow: 
+        /* Ring 1 */
+        -5px -5px 0 5px rgba(80, 50, 20, 0.4),
+        /* Ring 2 */
+        0 0 0 10px rgba(90, 60, 30, 0.3),
+        /* Ring 3 */
+        5px 5px 0 15px rgba(100, 70, 40, 0.5);
+    opacity: 0.8;
+    border: none;
+    background: transparent;
+}
+
+.universe{
+    position: absolute;
+    top: 320px;
+    left: 180px;
+    width: 280px;
+    height: 150px;
+    background-image: url('universe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(8deg);
+    z-index: 0;        /* desk layer */
+    color: red;
+}
+
+/* Scribbled name (alternate style) */
+.scribble-name {
+    position: absolute;
+    bottom: 100px;
+    left: 350px;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 38px;
+    color: #5a4a3a;
+    transform: rotate(6deg);
+    opacity: 0.6;
+    pointer-events: none;
+}
+.scribble-name::before {
+    content: "V Lives!!";
+}
+
+/* Old phone number */
+.phone-number {
+    position: absolute;
+    top: 550px;
+    right: 350px;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 25px;
+    color: #2b5ba9;
+    transform: rotate(10deg);
+    opacity: 0.5;
+    pointer-events: none;
+}
+.phone-number::before {
+    content: "867-5309";
+}
+
+/* Random question marks */
+.question-marks {
+    position: absolute;
+    top: 120px;
+    left: 400px;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 60px;
+    color: black;
+    transform: rotate(-10deg);
+    pointer-events: none;
+}
+.question-marks::before {
+    content: "???";
+}
+
+.scribble-blob {
+    position: absolute;
+    top: 500px;
+    left: 370px;
+    width: 300px;
+    height: 300px;
+    background-image: url('scribble-blob.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* MAKES IT LOOK CARVED IN DESK */
+    transform: rotate(-8deg);
+    filter: 
+        brightness(0.5) 
+        contrast(1.8) 
+        sepia(0.3)
+        drop-shadow(1px 2px 3px rgba(0,0,0,0.6));
+}
+
+.bolts-stars {
+    position: absolute;
+    top: 320px;
+    right: 140px;
+    width: 125px;
+    height: 150px;
+    background-image: url('bolts-stars.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.75;
+    transform: rotate(25deg);
+    filter: 
+        brightness(0.5) 
+        contrast(2.2) 
+        sepia(0.35)
+        drop-shadow(2px 2px 4px rgba(0,0,0,0.6));
+    z-index: 0;        /* desk layer */
+}
+
+.fart {
+    position: absolute;
+    top: 470px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    background-image: url('fart.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(8deg);
+    filter: 
+        brightness(0.5) 
+        contrast(2.2) 
+        sepia(0.35)
+        drop-shadow(2px 2px 4px rgba(0,0,0,0.6));
+    z-index: 0;        /* desk layer */
+}
+
+.lf-dolphin {
+    position: absolute;
+    top: 850px;
+    right: 580px;
+    width: 100px;
+    height: 100px;
+    background-image: url('lf-dolphin.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(8deg);
+    z-index: 0;        /* desk layer */
 }
 
 /* Etch-a-Sketch Container (Red Plastic) */
@@ -29,11 +424,18 @@ body {
     border-radius: 24px;
     border: 5px solid #a0172e;
     box-shadow: 
-        0 12px 30px rgba(0, 0, 0, 0.2),
-        inset 0 0 24px rgba(0, 0, 0, 0.1);
+        /* Inner toy shadows */
+        0 0 24px rgba(0, 0, 0, 0.1),
+        inset 0 0 24px rgba(0, 0, 0, 0.1),
+        /* Desk shadow - more realistic */
+        0 6px 12px rgba(139, 115, 85, 0.4),
+        0 12px 24px rgba(139, 115, 85, 0.3),
+        0 2px 4px rgba(139, 115, 85, 0.5);
     max-width: 900px;
     width: var(--frame-width);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* Logo */
@@ -60,6 +462,7 @@ body {
 
 /* Controls */
 .controls {
+    display: none;
     margin-bottom: 24px;
 }
 
@@ -214,3 +617,76 @@ body {
     transform: translate(-50%, -50%); /* ensures perfect centering */
     pointer-events: none;             /* so clicks still hit the knob */
 }
+
+/* 90s STICKERS - FRESH START */
+.desk-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.sticker-btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 0;
+    display: block;
+}
+
+/* RESIZE STICKER */
+#desk-grid-btn {
+    position: absolute;
+    top: 250px;
+    right: 380px;
+    transform: rotate(-6deg);
+}
+
+/* RESET STICKER */
+#reset-btn {
+    position: absolute;
+    top: 330px;
+    right: 300px;
+    transform: rotate(3deg);
+}
+
+.sticker-text {
+    font-family: 'Chewy', 'Fredoka One', 'Impact', 'Arial Black', sans-serif;
+    font-size: 4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    color: #ffd700;
+    text-shadow: 
+        3px 3px 0 #c41e3a,  /* Red on top */
+        6px 6px 0 #ffffff;  /* White underneath */
+    line-height: 0.9;
+}
+
+#desk-grid-btn .sticker-text {
+    color: #00ced1; /* Turquoise */
+    text-shadow: 
+        5px 5px 0 #ff69b4, /* Hot pink */
+        10px 10px 0 #ffffff;
+    font-size: 5.5rem;
+}
+
+#reset-btn .sticker-text {
+    color: #ff69b4; /* Hot pink */
+    text-shadow: 
+        5px 5px 0 #00ced1, /* Turquoise */
+        10px 10px 0 #ffffff;
+    font-size: 5.5rem;
+}
+
+
+
+
+
+
+
