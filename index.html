@@ -5,16 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Desk Details Container - All graffiti goes here -->
+    <div class="desk-details">
+        <!-- Pencil marks and drink rings are handled by CSS pseudo-elements -->
+        
+        <!-- Stussy S -->
+        <div class="stussy-s"></div>
+        
+        <!-- Scribbles -->
+        <div class="scribbles"></div>
+        
+        <!-- Name Tag -->
+        <div class="name-tag"></div>
+        
+        <!-- Universe -->
+        <div class="universe"></div>
+        
+        <!-- Scribble Name -->
+        <div class="scribble-name"></div>
+        
+        <!-- Phone Number -->
+        <div class="phone-number"></div>
+        
+        <!-- Question Marks -->
+        <div class="question-marks"></div>
+        
+        <!-- Scribble Blob -->
+        <div class="scribble-blob"></div>
+        
+        <!-- Bolts Stars -->
+        <div class="bolts-stars"></div>
+        
+        <!-- Fart -->
+        <div class="fart"></div>
+        
+        <!-- LF Dolphin -->
+        <div class="lf-dolphin"></div>
+        
+        <!-- Scratch Marks -->
+        <div class="scratch-marks"></div>
+    </div>
+
+    <!-- Love Cluster (separate from desk-details for z-index) -->
+    <div class="love-cluster">
+        <div class="love-note"></div>
+        <div class="love-heart love-heart-1"></div>
+        <div class="love-heart love-heart-2"></div>
+        <div class="love-heart love-heart-3"></div>
+        <div class="love-heart love-heart-4"></div>
+        <div class="love-heart love-heart-5"></div>
+    </div>
+
+    <!-- Star Cluster -->
+    <div class="star-cluster">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+    </div>
+
+    <!-- Desk Controls (Stickers) -->
+    <div class="desk-controls">
+        <button class="sticker-btn" id="desk-grid-btn">
+            <span class="sticker-text">RSZ</span>
+        </button>
+        <button class="sticker-btn" id="reset-btn">
+            <span class="sticker-text">CLR</span>
+        </button>
+    </div>
+
+    <!-- Etch-a-Sketch Container -->
     <div class="container">
-        <h1>Etch-a-Sketch</h1>
+        <h1 class="toy-logo">Etch A Sketch<span class="trademark">®</span></h1>
+        
+        <!-- Hidden original controls -->
         <div class="controls">
             <button id="grid-size-btn">Change Grid Size</button>
         </div>
-        <div id="sketch-container"></div>
+        
+        <div class="screen-bezel">
+            <div id="sketch-container"></div>
+        </div>
+
+        <div class="knobs">
+            <div class="knob" id="color-knob">
+                <span>COLOR</span>
+            </div>
+            <div class="knob" id="darken-knob">
+                <span>DARKEN</span>
+            </div>
+        </div>
     </div>
-    
-    <script src="script.js"></script>
 </body>
 </html>
