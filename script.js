@@ -2,6 +2,8 @@ const sketchContainer = document.getElementById('sketch-container');
 const gridSizeBtn = document.getElementById('grid-size-btn');
 const colorKnob = document.getElementById('color-knob');
 const darkenKnob = document.getElementById('darken-knob');
+const deskGridBtn = document.getElementById('desk-grid-btn');
+const resetBtn = document.getElementById('reset-btn');
 
 let currentGridSize = 100;
 let randomColors = false;
@@ -92,4 +94,42 @@ darkenKnob.addEventListener('click', () => {
     progressiveDarkening = !progressiveDarkening;
     darkenKnob.classList.toggle('active', progressiveDarkening);
     console.log('Progressive darkening:', progressiveDarkening ? 'ON' : 'OFF');
+});
+
+// Desk RESIZE button functionality
+deskGridBtn.addEventListener('click', () => {
+    const userInput = prompt('Enter number of squares per side (max 100):', currentGridSize);
+    const newSize = parseInt(userInput);
+    
+    if (isNaN(newSize) || newSize < 1 || newSize > 100) {
+        alert('Please enter a valid number between 1 and 100.');
+        return;
+    }
+    
+    currentGridSize = newSize;
+    createGrid(newSize);
+});
+
+// Desk RESET button - clear the screen with shake
+resetBtn.addEventListener('click', () => {
+    // Get the Etch-a-Sketch container
+    const toyContainer = document.querySelector('.container');
+    
+    // Add shaking animation class
+    toyContainer.classList.add('shake');
+    
+    // Clear all squares (set them back to silver)
+    const squares = document.querySelectorAll('.grid-square');
+    squares.forEach(square => {
+        square.style.backgroundColor = ''; // Remove any color
+        square.style.opacity = ''; // Reset opacity
+        square.classList.remove('hovered');
+    });
+    
+    // Remove shake class after animation completes
+    setTimeout(() => {
+        toyContainer.classList.remove('shake');
+    }, 500);
+    
+    console.log('Etch-a-Sketch shaken clean!');
 });
